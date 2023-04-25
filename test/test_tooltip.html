@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=3.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"></script>
+
+  <style>
+    .wrapper {
+      margin: 100px auto;
+      text-align: center;
+    }
+
+    /*
+    .tooltip-inner {
+      background-color: #f00;
+    }
+
+    .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before,
+    .bs-tooltip-top .tooltip-arrow::before {
+      border-top-color: #f00;
+    }
+
+    .bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before,
+    .bs-tooltip-bottom .tooltip-arrow::before {
+      border-bottom-color: #f00;
+    }
+
+    .bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before,
+    .bs-tooltip-start .tooltip-arrow::before {
+      border-left-color: #f00;
+    }
+
+    .bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before,
+    .bs-tooltip-end .tooltip-arrow::before {
+      border-right-color: #f00;
+    }
+    */
+
+    .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before, 
+    .bs-tooltip-top .tooltip-arrow::before { border-top-color: #185d23; }
+
+    .bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before, 
+    .bs-tooltip-start .tooltip-arrow::before { border-left-color: #185d23; }
+
+    .bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before, 
+    .bs-tooltip-end .tooltip-arrow::before { border-right-color: #185d23; }
+
+    .bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before, 
+    .bs-tooltip-bottom .tooltip-arrow::before { border-bottom-color: #185d23; }
+
+    .tooltip-inner { background-color: #185d23; }
+    .tooltip-inner h3 { color: #ffff00; }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+    <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="left"
+      title="Tooltip on left">
+      Tooltip on left
+    </button>
+
+    <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top"
+      title="Tooltip on top">
+      Tooltip on top
+    </button>
+
+    <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom"
+      title="Tooltip on bottom">
+      Tooltip on bottom
+    </button>
+
+    <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right"
+      title="Tooltip on right">
+      Tooltip on right
+    </button>
+
+  </div>
+
+  <div class="wrapper">
+    <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom"
+      title="<b><em>Tooltip</em></b> <u>with</u> <h3>HTML</h3>" data-bs-html="true">
+      Tooltip with HTML
+    </button>
+  </div>
+
+
+  <script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+  </script>
+
+</body>
+
+</html>

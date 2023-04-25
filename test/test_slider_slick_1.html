@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=3.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="./slick-1.8.1/slick/slick.css">
+  <link rel="stylesheet" href="./slick-1.8.1/slick/slick-theme.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="./slick-1.8.1/slick/slick.min.js"></script>
+  <style>
+    body {
+      background-color: #999;
+    }
+
+    .slider img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .slick-prev::before,
+    .slick-next:before {
+      content: none;
+    }
+
+    .slick-prev,
+    .slick-next {
+      width: 50px;
+      height: 100%;
+      z-index: 1;
+      background-repeat: no-repeat;
+    }
+    
+    .slick-prev {
+      background-image: url(../img/leftImg_1.png);
+      background-position: left center;
+      left: 0px;
+    }
+    .slick-prev:hover {
+      background-image: url(../img/leftImg_2.png);
+      background-repeat: no-repeat;
+      background-position: left center;
+    }
+
+    .slick-next {
+      background-image: url(../img/rightImg_1.png);
+      background-position: right center;
+      right: 0px;
+    }
+    .slick-next:hover {
+      background-image: url(../img/rightImg_2.png);
+      background-repeat: no-repeat;
+      background-position: right center;
+    }
+
+    /* TSslider3 */
+    .TSslider3 .slick-prev,
+    .TSslider3 .slick-next {
+      background-image: url(../img/index_arrow.png);
+      width: 120px;
+      height: 30px;
+      z-index: 1;
+      right: auto;
+      top: auto;
+
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+    
+    .TSslider3 .slick-prev {
+      /* background-position: left top; */
+      background-position: 0 0;
+      top: 0px;
+      transform: translate(-50%, -40px);
+    }
+    .TSslider3 .slick-prev:hover {
+      /* background-position: left bottom; */
+      background-position: 0 -30px;
+    }
+
+    .TSslider3 .slick-next {
+      /* background-position: right top; */
+      background-position: -120px 0;
+      bottom: 0px;
+      transform: translate(-50%, 40px);
+    }
+    .TSslider3 .slick-next:hover {
+      /* background-position: right bottom; */
+      background-position: -120px -30px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="slider TSslider1">
+    <div><img src="../img/sec3p1_1.jpg" alt=""></div>
+    <div><img src="../img/sec3p1_2.jpg" alt=""></div>
+    <div><img src="../img/sec3p1_3.jpg" alt=""></div>
+    <div><img src="../img/sec3p1_4.jpg" alt=""></div>
+    <div><img src="../img/sec3p2_1.jpg" alt=""></div>
+    <div><img src="../img/sec3p2_2.jpg" alt=""></div>
+    <div><img src="../img/sec3p2_3.jpg" alt=""></div>
+    <div><img src="../img/sec3p2_4.jpg" alt=""></div>
+    <div><img src="../img/sec3p3_1.jpg" alt=""></div>
+    <div><img src="../img/sec3p3_2.jpg" alt=""></div>
+    <div><img src="../img/sec3p3_3.jpg" alt=""></div>
+    <div><img src="../img/sec3p3_4.jpg" alt=""></div>
+  </div>
+
+
+  <div class="slider TSslider2" style="margin-top: 50px;">
+    <div><img src="../img/slide1.jpg" alt=""></div>
+    <div><img src="../img/slide2.jpg" alt=""></div>
+    <div><img src="../img/slide3.jpg" alt=""></div>
+  </div>
+
+  <div class="slider TSslider3" style="margin: 100px 0; width: 300px;">
+    <div><img src="../img/sec3p1_1.jpg" alt=""></div>
+    <div><img src="../img/sec3p1_2.jpg" alt=""></div>
+    <div><img src="../img/sec3p1_3.jpg" alt=""></div>
+    <div><img src="../img/sec3p1_4.jpg" alt=""></div>
+    <div><img src="../img/sec3p2_1.jpg" alt=""></div>
+    <div><img src="../img/sec3p2_2.jpg" alt=""></div>
+    <div><img src="../img/sec3p2_3.jpg" alt=""></div>
+    <div><img src="../img/sec3p2_4.jpg" alt=""></div>
+    <div><img src="../img/sec3p3_1.jpg" alt=""></div>
+    <div><img src="../img/sec3p3_2.jpg" alt=""></div>
+    <div><img src="../img/sec3p3_3.jpg" alt=""></div>
+    <div><img src="../img/sec3p3_4.jpg" alt=""></div>
+  </div>
+
+
+  <script>
+    $(document).ready(function () {
+
+      $('.TSslider1').slick({
+        dots: true,
+        //infinite: false,
+        speed: 300,
+        slidesToShow: 5,
+        slidesToScroll: 5,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 4,
+              slidesToScroll: 4,
+              infinite: true,
+              dots: true
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2
+            }
+          }
+          // You can unslick at a given breakpoint now by adding:
+          // settings: "unslick"
+          // instead of a settings object
+        ]
+      });
+
+      $('.TSslider2').slick({
+        dots: true
+      });
+
+      $('.TSslider3').slick({
+        vertical: true,
+        verticalSwiping: true,
+        slidesToShow: 4,
+        slidesToScroll: 1
+      });
+
+    });
+  </script>
+
+</body>
+
+</html>

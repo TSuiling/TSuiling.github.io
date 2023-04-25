@@ -1,0 +1,604 @@
+/* 在這個檔案中用到url(找外部圖檔) 
+ * 外部圖檔的路以這裡為出發指定相對路徑
+************************************ */
+
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400&family=Righteous&display=swap');
+/*  
+font-family: 'Noto Sans TC', sans-serif;  中文
+font-family: 'Righteous', cursive;  英文
+font-family: 'Righteous', 'Noto Sans TC', sans-serif;  英中文
+*/
+
+/* 設定變數 ===================================================== */
+:root {
+  --f-family-1: 'Righteous', 'Noto Sans TC', sans-serif;
+
+  --c-black-10: #000;
+  --c-black-05: rgba(0, 0, 0, 0.5);
+  /*暫無用*/
+
+  --c-gray1: #222;
+  --c-gray2: #999;
+  --c-gray3: #ddd;
+
+  --c-white-10: #fff;
+  --c-white-08: rgba(255, 255, 255, 0.8);
+  --c-white-06: rgba(255, 255, 255, 0.6);
+
+
+  --c-nav-10: rgba(50, 15, 60, 1);
+  --c-nav-05: rgba(50, 15, 60, 0.5);
+  --c-nav-00: rgba(50, 15, 60, 0);
+
+  --c-assist1-10: rgba(76, 18, 92, 1);
+  --c-assist1-07: rgba(76, 18, 92, 0.7);
+
+  --c-assist2-10: rgba(180, 120, 200, 1.0);
+  --c-assist2-03: rgba(180, 120, 200, 0.3);
+  --c-assist2-01: rgba(180, 120, 200, 0.1);
+  --c-assist2-00: rgba(180, 120, 200, 0.0);
+
+  --c-red: #f00;
+}
+
+/* reset & 整體預設 ============================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url(../img/body_bg.png);
+  /* font-family: Arial, Helvetica, sans-serif; VScode下拉式選單 */
+  /* 下一行是BS5已設計的 */
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* offcanvas 區域 ===================================================== */
+.offcanvas {
+  max-width: 85%;
+  background-image: url(../img/sec2_f2.png), url(../img/body_bg.png);
+  background-repeat: no-repeat, repeat;
+  background-position: right bottom;
+  background-size: 50%;
+}
+
+.offcanvas-header {
+  background-image: url(../img/shadow1.png);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: contain;
+}
+
+.offcanvas .navbar-nav .nav-link {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* header 區域 ===================================================== */
+header {
+  background-color: var(--c-nav-10);
+}
+
+.navbar-nav {
+  /* text-align: center; */
+  margin-left: 70px !important;
+}
+
+/*
+  尺寸大小,寬高 RWD 設計方法  ※建議「手機為先」的考量
+  方法1: @media(min-width:???px){ 設計LOGO的尺寸 }
+  方法2: width: min( calc( 40px + 3vw ), 90px )
+        計算函數 calc( 基本數值 + 依螢幕寬度的百分比 ) 加號左右必須空格
+        取最小值 min( calc計算依螢幕大小縮放( 最小值 + vw的比例 ), 限定的最大值 )
+*/
+
+.navbar-brand h1 {
+  font-size: min(calc(18px + 1.5vw), 36px);
+  font-family: var(--f-family-1);
+}
+
+.navbar-brand h1 img {
+  width: min(calc(40px + 3vw), 90px);
+}
+
+/* 按鈕一般狀態 */
+.navbar-dark .navbar-nav .nav-link {
+  color: var(--c-white-08);
+  font-size: 18px;
+  font-family: var(--f-family-1);
+  letter-spacing: 1px;
+  position: relative;
+}
+
+/* 按鈕滑入狀態 */
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: var(--c-white-10);
+  font-weight: bold;
+}
+
+/* 按鈕作用中狀態 */
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .show>.nav-link {
+  color: var(--c-white-10);
+  font-weight: bold;
+}
+
+
+
+@media(min-width:768px) {
+  .fixed-top {
+    background: var(--c-nav-10);
+    background: linear-gradient(var(--c-nav-10), var(--c-nav-05) 55%, var(--c-nav-00));
+    transition: 1s;
+    position: absolute;
+  }
+
+  @keyframes headerAni {
+    0% {
+      transform: translateY(-200%);
+    }
+  }
+
+  .fixed-top.fixed {
+    animation: headerAni .8s cubic-bezier(0.32, 0.33, 1, 0.46);
+    position: fixed;
+  }
+
+  header:hover {
+    background-color: var(--c-nav-10);
+  }
+
+  .navbar-nav {
+    margin-left: auto !important;
+  }
+
+  .navbar-dark .navbar-nav .nav-link {
+    padding: .8rem .5rem;
+  }
+
+  .navbar-dark .navbar-nav .nav-link::after {
+    content: '';
+    background-color: var(--c-white-06);
+    position: absolute;
+    left: 0;
+    display: block;
+    bottom: 0;
+    height: 4px;
+    width: 100%;
+    transform: scaleX(0);
+    transition: .5s;
+  }
+
+  .navbar-dark .navbar-nav .nav-link:hover::after {
+    transform: scaleX(100%);
+  }
+
+  .navbar-dark .navbar-nav .nav-link.active::after {
+    transform: scaleX(100%);
+    background-color: var(--c-white-10);
+  }
+}
+
+/* section 所有區域 ===================================================== */
+section {
+  min-height: 100vh;
+  background-image: url(../img/shadow1.png);
+  background-repeat: no-repeat;
+  background-position: center top;
+  padding: 120px 0 50px 0;
+  position: relative;
+}
+
+h2 {
+  margin-bottom: 40px;
+  text-align: center;
+  background: url(../img/h1bg.png) no-repeat center;
+  background-size: contain;
+  /* CSS1,2可以合併縮寫, CSS3新增不能合併上去 */
+  /* 先合併代表所有background相關設定, 合併寫法放在上方 */
+  /* 單一指定的background項目可以再放下方 */
+  font-family: var(--f-family-1);
+  /* 版面小時, 背景可縮小寬度滿版; 版面大時, 背景最大到600px */
+}
+
+@media(min-width: 600px) {
+  h2 {
+    background-size: auto;
+    /*auto自動依原尺寸*/
+  }
+}
+
+/* #sec1 區域 ===================================================== */
+#sec1 {
+  padding: 0;
+}
+
+#sec1 .carousel-item {
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+
+
+
+
+/* #sec2 區域 ===================================================== */
+#sec2 {
+  background-image: url(../img/sec2_f1.png), url(../img/sec2_f1.png), url(../img/sec2_f2.png);
+  background-repeat: no-repeat;
+  background-position: left 80px, left bottom, right bottom;
+  background-size: min(6vw, 50px) auto, min(10vw, 90px) auto, min(22vw, 200px) auto;
+  padding-bottom: 200px;
+}
+
+#sec2 .row {
+  width: 90%;
+  margin: 0 auto;
+}
+
+#sec2 .row .col-12:last-of-type {
+  position: relative;
+  padding: 1rem;
+  margin-top: 30px;
+}
+
+#sec2 .row .col-12:last-of-type::before {
+  content: '';
+  background-color: var(--c-assist2-01);
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+  box-sizing: content-box;
+}
+
+
+#sec2 .row p {
+  text-align: justify;
+}
+
+#sec2 .row h3,
+#sec2 .row p,
+#sec2 .row .col-12:first-of-type {
+  z-index: 1;
+  position: relative;
+}
+
+#sec2 .row .col-12:first-of-type {
+  position: relative;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+#sec2 .row .col-12:first-of-type::after {
+  content: '';
+  background-image: url(../img/shadow2.png);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: translateY(100%);
+  width: 100%;
+  height: 30px;
+  animation-duration: 1s;
+  animation-delay: .5s;
+  animation-name: fadeIn;
+}
+
+@media (min-width: 768px) {
+  #sec2 .row {
+    align-items: flex-start;
+  }
+
+  #sec2 .row .col-12:first-of-type {
+    transform: translateY(50px);
+  }
+
+  #sec2 .row .col-12:last-of-type {
+    padding: 1rem;
+    margin-top: 0;
+  }
+
+  #sec2 .row .col-12:last-of-type::before {
+    padding-left: 200px;
+    box-sizing: content-box;
+    transform: translate(-200px, 2rem);
+  }
+}
+
+/* #sec3 區域 ===================================================== */
+.nav-tabs {
+  border: none;
+}
+
+/* navs 按鈕一般狀態  */
+#sec3 .nav-tabs .nav-link {
+  border: none;
+  color: var(--c-gray2);
+  margin-bottom: 0;
+  font-family: var(--f-family-1);
+  font-size: 17px;
+  letter-spacing: 1px;
+}
+
+/* navs 按鈕滑入狀態  */
+#sec3 .nav-tabs .nav-link:focus,
+#sec3 .nav-tabs .nav-link:hover {
+  color: var(--c-gray1);
+  font-weight: bold;
+}
+
+/* navs 按鈕作用中狀態  */
+#sec3 .nav-tabs .nav-item.show .nav-link,
+#sec3 .nav-tabs .nav-link.active {
+  color: var(--c-black-10);
+  background-color: var(--c-assist2-03);
+  font-weight: bold;
+}
+
+#sec3 .tab-content>.tab-pane {
+  background: var(--c-nav-10);
+  background: linear-gradient(var(--c-assist2-03), var(--c-assist2-01) 30%, var(--c-assist2-00) 70%);
+  padding: 20px 0;
+  text-align: center;
+}
+
+.sec3img {
+  display: block;
+  width: 90%;
+  max-width: 300px;
+  margin: 20px auto;
+  border-radius: 10px;
+}
+
+
+#sec3 .tab-pane .col-12,
+#sec3 .tab-pane .col-12 img {
+  transition: .5s;
+}
+
+/* 負責放大的效果 */
+.scale-b {
+  transform: scale(1.1);
+}
+
+/* 負責放大框中的影像有陰影 */
+.scale-b img {
+  box-shadow: 0 0 5px var(--c-assist1-07);
+}
+
+/* 負責縮小的效果 */
+.scale-s {
+  transform: scale(0.8);
+  opacity: 0.3;
+}
+
+/*
+誰hover誰就是主角, 這裡負責主角自己的變化
+#sec3 .tab-pane .col-12:hover {
+  transform: scale(1.1);
+}
+負責主角子孫的變化
+#sec3 .tab-pane .col-12:hover img {
+  box-shadow: 0 0 5px var(--c-assist1-07);
+}
+負責主角弟弟的變化
+#sec3 .tab-pane .col-12:hover ~ .col-12 {
+  transform: scale(0.8);
+  opacity: 0.3;
+}
+*/
+
+/* #sec4 區域 ===================================================== */
+#sec4 .container-xl {
+  background-image: url(../img/sec4m1.png);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: auto 130px;
+  padding-top: 130px;
+  position: relative;
+}
+
+#sec4 .container-xl::before {
+  content: '';
+  background-image: url(../img/sec4m2.png);
+  width: 29px;
+  height: 23px;
+  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translate(35px, -60%);
+}
+
+/*
+#sec4 > .container-xl > .row > .col-12 {
+  background-color: white;
+}
+*/
+
+#sec4 .col-12>h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+#sec4 .accordion-item {
+  background-color: transparent;
+  border: none;
+}
+
+#sec4 .accordion-button {
+  background-color: transparent;
+}
+
+#sec4 .accordion-button:not(.collapsed) {
+  color: #9038ae;
+  font-weight: bold;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.accordion-button:focus {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+#sec4 .accordion-body {
+  padding: 0 3rem 2rem 2rem;
+  text-align: justify;
+}
+
+.accordion-button:not(.collapsed)::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%239038ae'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.svg1 {
+  fill: red;
+}
+
+.svg2 {
+  fill: yellowgreen;
+}
+
+@media(min-width:768px) {
+  #sec4 .container-xl {
+    background-image: url(../img/sec4bg.png), url(../img/sec4bg2.png);
+    background-repeat: no-repeat, repeat-y;
+    background-size: 100% auto;
+    padding-top: 0;
+  }
+
+  #sec4 .container-xl::before {
+    content: none;
+  }
+}
+
+/* #sec5 區域 ===================================================== */
+
+#sec5 .container-xl {
+  background-image: url(../img/contact.png);
+  background-size: auto 150px;
+  background-repeat: no-repeat;
+  background-position: 20% 0;
+  padding-top: 150px;
+}
+
+/* 表單 */
+#sec5 form {
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 30px 1rem 30px 1rem;
+  margin-bottom: 80px;
+  border-radius: 10px;
+}
+
+#sec5 form .row {
+  margin-bottom: 2rem;
+}
+
+#sec5 form i {
+  color: #9038ae;
+  order: -1;
+  font-size: 1.5em;
+}
+
+#sec5 form .row:nth-of-type(5) .col-12:nth-of-type(2) div {
+  width: 6em;
+}
+
+#sec5 form label {
+  padding-right: .5rem;
+}
+
+.form-control:focus {
+  border-color: var(--c-assist2-01);
+  box-shadow: 0 0 0 0.25rem var(--c-assist2-01);
+}
+
+.form-check-input:focus {
+  border-color: var(--c-assist2-01);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem var(--c-assist2-01);
+}
+
+.form-check-input:checked {
+  background-color: var(--c-assist2-10);
+  border-color: var(--c-assist2-10);
+}
+
+.form-select:focus {
+  border-color: var(--c-assist2-01);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem var(--c-assist2-01);
+}
+
+::placeholder {
+  color: #bbb !important;
+}
+
+.redword {
+  color: red;
+  padding-right: .3rem;
+}
+
+footer {
+  background-color: var(--c-nav-10);
+  color: #fff;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 1.5rem .5rem;
+}
+
+@media(min-width: 576px) {
+  #sec5 form {
+    padding: 30px 50px 30px 1rem;
+  }
+
+  #sec5 form .row {
+    margin-bottom: .8rem;
+  }
+
+  #sec5 form i {
+    order: 0;
+  }
+
+  #sec5 form .row:nth-of-type(5) .col-12:nth-of-type(2) div {
+    width: auto;
+    white-space: nowrap;
+  }
+}
+
+@media(min-width: 768px) {
+  #sec5 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #sec5 .container-xl {
+    background-size: 30% auto;
+    background-position: left bottom;
+    padding-top: 0px;
+    min-height: 300px;
+    flex: 1;
+  }
+}
